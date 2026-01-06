@@ -102,27 +102,39 @@
 	</footer>
 
 	<!-- Modal de Reglas -->
-	<div class="modal" id="rules-modal">
-		<div class="modal-content">
-			<h2> Reglas del Juego</h2>
-			<p><strong>Objetivo: </strong>Llegar a la meta completando las pruebas.</p>
+<div class="modal" id="rules-modal">
+    <div class="modal-content">
+        <h2>Reglas del Juego</h2>
+        <p><strong>Objetivo:</strong> Llegar a la meta superando los retos por equipos.</p>
 
-			<h3>Cómo jugar:</h3>
-			<ul>
-				<li><strong>1. Tira el dado.</strong> Avanza en el tablero.</li>
-				<li><strong>2. Voltea la carta en la que has aterrizado.</strong>
-					<br><strong>Si es azul: </strong>¡Pregunta! Léela en voz alta. Si respondes correctamente, ganas una
-					tirada extra. (máximo de 2 tiradas por ronda).
-				</li>
-				<li><strong>Cartas Magenta (mímica):</strong> Representa con gestos lo que pide la carta.</li>
-				<li><strong>Cartas Amarillas (ventaja):</strong> ¡Avanza casillas extras!</li>
-				<li><strong>Cartas Negras (desventaja):</strong> Retrocede casillas... ¡a menos que el inmune te salve!
-				</li>
-			</ul>
+        <h3>El Turno:</h3>
+        <ul>
+            <li><strong>Tirada 1:</strong> Tira el dado y mueve tu ficha. Realiza la prueba de la casilla.
+                <ul>
+                    <li><strong>Si aciertas:</strong> Consigues un "Checkpoint" (te quedas donde estás) y tiras de nuevo.</li>
+                    <li><strong>Si fallas:</strong> Vuelves a la casilla donde empezaste el turno y pasa el turno.</li>
+                </ul>
+            </li>
+            <li><strong>Tirada 2 (Extra):</strong> Tira y mueve de nuevo. Realiza la prueba.
+                <ul>
+                    <li><strong>Si aciertas:</strong> Te quedas en la nueva casilla y pasa el turno.</li>
+                    <li><strong>Si fallas:</strong> Retrocedes hasta tu "Checkpoint" (la posición de la 1ª tirada).</li>
+                </ul>
+            </li>
+        </ul>
 
-			<button class="modal-close" onclick="closeRules()">Cerrar</button>
-		</div>
-	</div>
+        <h3>Tipos de Casilla:</h3>
+        <ul>
+            <li><strong>Azul (Pregunta):</strong> <strong>Antes de leerla</strong>, elige a un ayudante de tu equipo que podrá responder por ti.</li>
+            <li><strong>Verde (Dibuja):</strong> Dibuja el concepto sin usar letras ni números para que tu equipo lo adivine en 1 minuto.</li>
+            <li><strong>Magenta (Mímica):</strong> Tu equipo debe adivinar a quién imitas usando solo gestos en 1 minuto.</li>
+            <li><strong>Amarilla (Ventaja):</strong> Sigue las instrucciones para avanzar casillas extra.</li>
+            <li><strong>Negra (Desventaja):</strong> Retrocede las casillas que indique la carta.</li>
+        </ul>
+
+        <button class="modal-close" onclick="closeRules()">¡A jugar!</button>
+    </div>
+</div>
 
 	<!-- Mensaje de Estado -->
 	<div class="status-message" id="status-message"></div>
