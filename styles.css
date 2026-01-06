@@ -1,0 +1,512 @@
+/* ===== Reset y Variables ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-pregunta: #2363a1;
+  --color-dibuja: #308906;
+  --color-mimica: #a30466;
+  --color-desventaja: #272623;
+  --color-ventaja: #c9cd16;
+  --card-aspect-ratio: 3.5 / 2.5;
+}
+
+body {
+  background: #060541;
+  background: radial-gradient(
+    circle,
+    rgb(74, 89, 134) 0%,
+    rgb(17, 17, 64) 70%,
+    rgb(10, 10, 26) 100%
+  );
+  color: #ffffff;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  overflow-x: hidden;
+  justify-content: center;
+}
+
+/* ===== Header ===== */
+header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.3);
+}
+
+/* ===== Contenedor Principal ===== */
+.game-container {
+  max-width: 100dvw;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  justify-content: center;
+}
+
+/* ===== Cartas ===== */
+.card-row {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.card-row.single {
+  justify-content: center;
+}
+
+.card-row.single .card-wrapper {
+  max-width: calc(50% - 7.5px);
+}
+
+.card-row.double {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.card-wrapper {
+  perspective: 1000px;
+  width: 100%;
+  aspect-ratio: var(--card-aspect-ratio);
+  cursor: pointer;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card.flipped {
+  transform: rotateY(180deg);
+}
+
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+}
+
+.card-front {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid;
+}
+
+.card-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(1.3);
+}
+
+.card-back {
+  background-color: #ffffff;
+  color: #000000;
+  transform: rotateY(180deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border: 8px solid;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* Colores de bordes por tipo de carta */
+.card-pregunta .card-front {
+  border-color: var(--color-pregunta);
+}
+
+.card-pregunta .card-back {
+  border-color: var(--color-pregunta);
+}
+
+.card-dibuja .card-front {
+  border-color: var(--color-dibuja);
+}
+
+.card-dibuja .card-back {
+  border-color: var(--color-dibuja);
+}
+
+.card-mimica .card-front {
+  border-color: var(--color-mimica);
+}
+
+.card-mimica .card-back {
+  border-color: var(--color-mimica);
+}
+
+.card-desventaja .card-front {
+  border-color: var(--color-desventaja);
+}
+
+.card-desventaja .card-back {
+  border-color: var(--color-desventaja);
+}
+
+.card-ventaja .card-front {
+  border-color: var(--color-ventaja);
+}
+
+.card-ventaja .card-back {
+  border-color: var(--color-ventaja);
+}
+
+/* ===== Botón de Inmunidad ===== */
+.immunity-btn {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #ff5722;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.immunity-btn:hover {
+  background-color: #e64a19;
+}
+
+.immunity-btn:active {
+  transform: scale(0.95);
+}
+
+/* ===== Dado ===== */
+.dice-section {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.dice-button {
+  background: linear-gradient(145deg, #ffffff, #e0e0e0);
+  color: #000000;
+  border: 4px solid #333;
+  border-radius: 20px;
+  width: 120px;
+  height: 120px;
+  font-size: 3.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dice-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.4);
+}
+
+.dice-button:active {
+  transform: scale(0.95);
+}
+
+.dice-button.rolling {
+  animation: shake 0.1s infinite, blur-effect 1s;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  25% {
+    transform: translate(-5px, 5px) rotate(-5deg);
+  }
+
+  50% {
+    transform: translate(5px, -5px) rotate(5deg);
+  }
+
+  75% {
+    transform: translate(-5px, -5px) rotate(-5deg);
+  }
+}
+
+@keyframes blur-effect {
+  0%,
+  100% {
+    filter: blur(0px);
+  }
+
+  50% {
+    filter: blur(3px);
+  }
+}
+
+.dice-button.impact {
+  animation: impact 0.3s;
+}
+
+@keyframes impact {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ===== Footer ===== */
+footer {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #333;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  color: #ffffff;
+  text-decoration: underline;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: #2196f3;
+}
+
+/* ===== Modal ===== */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-content {
+  background-color: #1a1a1a;
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 500px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 40px rgba(255, 255, 255, 0.2);
+}
+
+.modal-content h2 {
+  margin-bottom: 20px;
+  color: #2196f3;
+}
+
+.modal-content p {
+  line-height: 1.8;
+  margin-bottom: 15px;
+}
+
+.modal-content ul {
+  margin-left: 20px;
+  margin-bottom: 15px;
+}
+
+.modal-content li {
+  margin-bottom: 10px;
+}
+
+.modal-close {
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.modal-close:hover {
+  background-color: #1976d2;
+}
+
+/* ===== Responsive ===== */
+@media (min-width: 600px) {
+  .game-container {
+    max-width: 80dvw;
+  }
+}
+
+@media (min-width: 768px) {
+  .game-container {
+    max-width: 70dvw;
+  }
+}
+@media (min-width: 800px) {
+  .game-container {
+    max-width: 50dvw;
+  }
+}
+@media (min-width: 990px) {
+  .game-container {
+    max-width: 30dvw;
+  }
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+.card-back {
+  font-size: 0.95rem;
+  padding: 15px;
+}
+
+.dice-button {
+  width: 100px;
+  height: 100px;
+  font-size: 3rem;
+}
+
+/* ===== Mensaje de Estado ===== */
+.status-message {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #2196f3;
+  color: white;
+  padding: 15px 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(33, 150, 243, 0.5);
+  z-index: 2000;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.status-message.show {
+  opacity: 1;
+}
+/* ===== Mimica Card Specific Styles ===== */
+.challenge-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.card-mimica .card-back {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  padding: 0;
+  position: relative;
+}
+p#nombre-mimica {
+  margin-bottom: 10px;
+  margin-left: 4px;
+}
+.challenge-text {
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+}
+
+.btn-ejemplo {
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  background: none;
+  border: none;
+  width: 100%;
+  text-decoration: underline;
+}
+
+.btn-ejemplo:active {
+  transform: translateY(0);
+}
+
+.texto-ejemplo {
+  z-index: 999;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.95);
+  padding: 15px;
+  background-color: #000000;
+  border-radius: 8px;
+  border: 2px solid var(--color-mimica);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
+  animation: fadeInUp 0.3s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card-back.visible {
+  overflow: visible;
+}
+
+.hidden {
+  display: none;
+}

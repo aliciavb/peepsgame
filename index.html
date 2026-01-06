@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>The Peeps Game</title>
+	<link rel="stylesheet" href="styles.css">
+	<script src="database.js"></script>
+	<script src="script.js" defer></script>
+</head>
+
+<body>
+	<header><h1>The Peeps Game</h1></header>
+
+	<div class="game-container">
+		<!-- Fila 1: pregunta (Azul) -->
+		<div class="card-row single">
+			<div class="card-wrapper" onclick="flipCard('pregunta')">
+				<div class="card card-pregunta" id="card-pregunta">
+					<div class="card-face card-front">
+						<img src="peepsgameimgs/pregunta.png" alt="pregunta">
+					</div>
+					<div class="card-face card-back" id="back-pregunta">
+						Toca para comenzar
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Fila 2: Dibuja (Verde) y Mímica (Magenta) -->
+		<div class="card-row double">
+			<div class="card-wrapper" onclick="flipCard('dibuja')">
+				<div class="card card-dibuja" id="card-dibuja">
+					<div class="card-face card-front">
+						<img src="peepsgameimgs/dibuja.png" alt="Dibuja">
+					</div>
+					<div class="card-face card-back" id="back-dibuja">
+						Toca para comenzar
+					</div>
+				</div>
+			</div>
+
+			<div class="card-wrapper" onclick="flipCard('mimica')">
+				<div class="card card-mimica" id="card-mimica">
+					<div class="card-face card-front" id="front-mimica">
+						<img src="peepsgameimgs/mimica.png" alt="Mímica">
+					</div>
+					<div class="card-face card-back" id="back-mimica">
+						<p class="challenge-title">Imita a: </p>
+						<p class="challenge-text" id="nombre-mimica"></p>
+						<a class="btn-ejemplo" onclick="event.stopPropagation(); mostrarEjemplo();">Ejemplo</a>
+						<p id="texto-ejemplo" class="texto-ejemplo hidden"></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+
+	<!-- Sección del Dado -->
+	<div class="dice-section">
+		<button class="dice-button" id="dice-btn" onclick="rollDice()">
+			🎲
+		</button>
+	</div>
+
+
+	<div class="game-container">
+		<!-- Fila 3: Desventaja (Negro) y Ventaja (Amarillo) -->
+		<div class="card-row double">
+			<div class="card-wrapper" onclick="flipCard('desventaja')">
+				<div class="card card-desventaja" id="card-desventaja">
+					<div class="card-face card-front">
+						<img src="peepsgameimgs/desventaja.png" alt="Desventaja">
+					</div>
+					<div class="card-face card-back" id="back-desventaja">
+						Toca para comenzar
+					</div>
+				</div>
+			</div>
+
+			<div class="card-wrapper" onclick="flipCard('ventaja')">
+				<div class="card card-ventaja" id="card-ventaja">
+					<div class="card-face card-front">
+						<img src="peepsgameimgs/ventaja.png" alt="Ventaja">
+					</div>
+					<div class="card-face card-back" id="back-ventaja">
+						Toca para comenzar
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer -->
+	<footer>
+		<div class="footer-links">
+			<a onclick="showRules()">Reglas</a>
+			<a onclick="newGame()">Nueva partida</a>
+		</div>
+	</footer>
+
+	<!-- Modal de Reglas -->
+	<div class="modal" id="rules-modal">
+		<div class="modal-content">
+			<h2> Reglas del Juego</h2>
+			<p><strong>Objetivo: </strong>Llegar a la meta completando las pruebas.</p>
+
+			<h3>Cómo jugar:</h3>
+			<ul>
+				<li><strong>1. Tira el dado.</strong> Avanza en el tablero.</li>
+				<li><strong>2. Voltea la carta en la que has aterrizado.</strong>
+					<br><strong>Si es azul: </strong>¡Pregunta! Léela en voz alta. Si respondes correctamente, ganas una
+					tirada extra. (máximo de 2 tiradas por ronda).
+				</li>
+				<li><strong>Cartas Magenta (mímica):</strong> Representa con gestos lo que pide la carta.</li>
+				<li><strong>Cartas Amarillas (ventaja):</strong> ¡Avanza casillas extras!</li>
+				<li><strong>Cartas Negras (desventaja):</strong> Retrocede casillas... ¡a menos que el inmune te salve!
+				</li>
+			</ul>
+
+			<button class="modal-close" onclick="closeRules()">Cerrar</button>
+		</div>
+	</div>
+
+	<!-- Mensaje de Estado -->
+	<div class="status-message" id="status-message"></div>
+
+</body>
+</html>
